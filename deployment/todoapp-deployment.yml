@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: todoapp-deployment
+
+spec:
+  template:
+    metadata:
+      name: todoapp-pod
+      labels:
+        app: todoapp
+
+    spec:
+      containers:
+        - name: mysql
+          image: pmelero/mysql:todoapp-db
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: Password
+            - name: MYSQL_DATABASE
+              value: todoapp
+          ports:
+            - containerPort: 3360
+
+        - name: todo-app
+          image: pmelero/todoapp:nodeapp
+          env:
+            - name: NODE_ENV
+              value: Production
+          ports:
+            - containerPort: 5000
+
+  replicas: 3
+
+  # Also manage this previously created POD
+  selector:
+    matchLabels:
+      app: todoapp

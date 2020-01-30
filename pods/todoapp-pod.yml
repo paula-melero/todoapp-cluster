@@ -1,0 +1,17 @@
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: todoapp-pod
+  labels:
+    app: todoapp
+spec:
+  containers:
+    - name: todo-app1
+      image: pmelero/todoapp:nodeapp
+      env:
+        - name: NODE_ENV
+          value: Production
+      ports:
+        - containerPort: 5000
