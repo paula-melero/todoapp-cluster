@@ -14,21 +14,11 @@ spec:
 
     spec:
       containers:
-        - name: mysql
-          image: pmelero/mysql:todoapp-db
-          env:
-            - name: MYSQL_ROOT_PASSWORD
-              value: Password
-            - name: MYSQL_DATABASE
-              value: todoapp
-          ports:
-            - containerPort: 3360
-
         - name: todo-app
-          image: pmelero/todoapp:nodeapp
           env:
             - name: NODE_ENV
-              value: Production
+              value: production
+          image: pmelero/todoapp:v6
           ports:
             - containerPort: 5000
 

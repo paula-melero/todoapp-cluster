@@ -5,7 +5,7 @@ kind: Pod
 metadata:
   name: mysql-pod
   labels:
-    app: mysql-pod
+    app: mysql
 spec:
   containers:
     - name: mysql

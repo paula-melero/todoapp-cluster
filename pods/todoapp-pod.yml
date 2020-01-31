@@ -8,10 +8,10 @@ metadata:
     app: todoapp
 spec:
   containers:
-    - name: todo-app1
+    - name: todo-app
       image: pmelero/todoapp:nodeapp
       env:
         - name: NODE_ENV
-          value: Production
+          value: production
       ports:
         - containerPort: 5000

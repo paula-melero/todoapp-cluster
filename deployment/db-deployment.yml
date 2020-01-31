@@ -1,40 +1,32 @@
 apiVersion: apps/v1
 
-kind: ReplicaSet
+kind: Deployment
 
 metadata:
-  name: todoapp-replicaset
+  name: db-deployment
 
 spec:
-  ### POD creation definition ###
   template:
     metadata:
-      name: todoapp-pod
+      name: mysql-pod
       labels:
-        app: todoapp
+        app: mysql
 
     spec:
       containers:
-        - name: todo-app
-          image: pmelero/todoapp:nodeapp
-          env:
-            - name: NODE_ENV
-              value: production
-          ports:
-            - containerPort: 5000
         - name: mysql
-          image: pmelero/mysql:todoapp-db
           env:
             - name: MYSQL_ROOT_PASSWORD
               value: Password
             - name: MYSQL_DATABASE
               value: todoapp
+          image: pmelero/mysql:todoapp-db
           ports:
             - containerPort: 3360
 
-  replicas: 3
+  replicas: 1
 
   # Also manage this previously created POD
   selector:
     matchLabels:
-      app: todoapp
+      app: mysql
