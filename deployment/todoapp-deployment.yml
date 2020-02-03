@@ -11,6 +11,7 @@ spec:
       name: todoapp-pod
       labels:
         app: todoapp
+        type: back-end
 
     spec:
       containers:
@@ -18,13 +19,15 @@ spec:
           env:
             - name: NODE_ENV
               value: production
-          image: pmelero/todoapp:v6
+            - name: MYSQL_HOST
+              value: db-service
+          image: pmelero/todoapp:v8
           ports:
             - containerPort: 5000
 
   replicas: 3
 
-  # Also manage this previously created POD
+  # Also manage this previously created PODs
   selector:
     matchLabels:
       app: todoapp

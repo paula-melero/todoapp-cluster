@@ -1,11 +1,14 @@
 apiVersion: apps/v1
 
-kind: Deployment
+kind: StatefulSet
 
 metadata:
-  name: db-deployment
+  name: mysql-set
+  labels:
+    app: mysql
 
 spec:
+  serviceName: mysql-h
   template:
     metadata:
       name: mysql-pod
@@ -25,7 +28,7 @@ spec:
           ports:
             - containerPort: 3360
 
-  replicas: 2
+  replicas: 3
 
   # Also manage this previously created POD
   selector:

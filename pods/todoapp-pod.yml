@@ -6,6 +6,7 @@ metadata:
   name: todoapp-pod
   labels:
     app: todoapp
+    type: back-end
 spec:
   containers:
     - name: todo-app

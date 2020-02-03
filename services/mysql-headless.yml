@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: db-service
+  name: mysql-h
 spec:
   ports:
     - protocol: TCP
@@ -10,3 +10,5 @@ spec:
   selector:
     app: mysql
     type: mysql-db
+
+  clusterIP: None #this creates a headless service
